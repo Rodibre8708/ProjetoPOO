@@ -4,10 +4,11 @@ import restaurante.*;
 
 import java.util.Scanner;
 import java.util.HashMap;
-
+import java.util.HashSet;
 
 public class SistemaGerenciamento {
     
+    private static HashSet<Integer> sistemasUsados = new HashSet<>(); // Para rastrear os sistemas usados
     private static HashMap<String, Integer> popularidadeMedico = new HashMap<>(); // qual medico é mais procurado
     private static HashMap<String, Integer> popularidadeItens = new HashMap<>(); // qual item do menu é mais procurado
     private static HashMap<String, Integer> popularidadeEventos = new HashMap<>(); // qual evento mais é procurado
@@ -28,14 +29,20 @@ public class SistemaGerenciamento {
             switch (opcao) {
                 case 1:
                     gerenciamentoClinica(scanner);
+                    sistemasUsados.add(1);
                     break;
                 case 2:
                     gerenciamentoEventos(scanner);
+                    sistemasUsados.add(2);
                     break;
                 case 3:
                     gerenciamentoRestaurante(scanner);
+                    sistemasUsados.add(3);
                     break;
                 case 0:
+                    if (sistemasUsados.size() == 3) {
+                    System.out.println("\nObrigado por testar o nosso sistema, você é massa!");
+                    }
                     scanner.close();
                     return;
                 default:
@@ -121,6 +128,7 @@ public class SistemaGerenciamento {
 
     Pedido pedido = new Pedido();
 
+    //preenchimento restaurante e opcao de fazer outra
     boolean adicionarMaisItens = true;
     while (adicionarMaisItens) {
         System.out.print("Nome do item: ");
@@ -166,6 +174,9 @@ public class SistemaGerenciamento {
     private static void gerenciamentoEventos(Scanner scanner) {
     System.out.println("\nGerenciamento de Eventos");
         
+    //preenchimento evento e opcao de fazer outra
+    boolean registrarMais = true;
+    while (registrarMais) {
 
     System.out.print("Nome do evento: ");
     String nomeEvento = scanner.nextLine();
@@ -201,9 +212,16 @@ public class SistemaGerenciamento {
     popularidadeEventos.put(evento.getNome(), popularidadeEventos.getOrDefault(evento.getNome(), 0) + 1);
     String eventoMaisPopular = popularidadeEventos.entrySet().stream().max((entry1, entry2) -> entry1.getValue() - entry2.getValue()).get().getKey();
 
+    System.out.print("Deseja registrar mais uma participação? (s/n): ");
+        String resposta = scanner.nextLine();
+        if (resposta.equalsIgnoreCase("n")) {
+            registrarMais = false;
+        }
+
     //o mais popular
     System.out.println("O evento com mais participantes é: " + eventoMaisPopular);
 
         evento.gerarRelatorio();
+        }
     }
 }
