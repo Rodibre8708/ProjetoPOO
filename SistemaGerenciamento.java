@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class SistemaGerenciamento {
-    
+    //associar valores 
     private static HashSet<Integer> sistemasUsados = new HashSet<>(); // Para rastrear os sistemas usados
     private static HashMap<String, Integer> popularidadeMedico = new HashMap<>(); // qual medico é mais procurado
     private static HashMap<String, Integer> popularidadeItens = new HashMap<>(); // qual item do menu é mais procurado
