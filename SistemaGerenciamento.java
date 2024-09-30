@@ -8,7 +8,7 @@ import java.util.HashSet;
 
 public class SistemaGerenciamento {
     //associar valores 
-    private static HashSet<Integer> sistemasUsados = new HashSet<>(); // Para rastrear os sistemas usados
+    private static HashSet<Integer> sistemasUsados = new HashSet<>(); // funcionalidade adicional Para rastrear os sistemas usados 
     private static HashMap<String, Integer> popularidadeMedico = new HashMap<>(); // qual medico é mais procurado
     private static HashMap<String, Integer> popularidadeItens = new HashMap<>(); // qual item do menu é mais procurado
     private static HashMap<String, Integer> popularidadeEventos = new HashMap<>(); // qual evento mais é procurado
@@ -40,7 +40,7 @@ public class SistemaGerenciamento {
                     sistemasUsados.add(3);
                     break;
                 case 0:
-                    if (sistemasUsados.size() == 3) {
+                    if (sistemasUsados.size() == 3) { //funcionalidade adicional
                     System.out.println("\nObrigado por testar o nosso sistema, você é massa!");
                     }
                     scanner.close();
@@ -158,9 +158,7 @@ public class SistemaGerenciamento {
     System.out.println("Total da mesa: R$" + mesa.calcularTotal());
 
     // qual o item mais popular
-    String itemMaisPopular = popularidadeItens.entrySet().stream()
-        .max((entry1, entry2) -> entry1.getValue() - entry2.getValue())
-        .get().getKey();
+    String itemMaisPopular = popularidadeItens.entrySet().stream().max((entry1, entry2) -> entry1.getValue() - entry2.getValue()).get().getKey();
 
     System.out.println("O item mais popular foi: " + itemMaisPopular);
 }
