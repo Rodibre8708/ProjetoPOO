@@ -103,9 +103,7 @@ public class SistemaGerenciamento {
     }
 
     //diz qual foi o medico mais procurado
-    String medicoMaisSolicitado = popularidadeMedico.entrySet().stream()
-        .max((entry1, entry2) -> entry1.getValue() - entry2.getValue())
-        .get().getKey();
+    String medicoMaisSolicitado = popularidadeMedico.entrySet().stream().max((entry1, entry2) -> entry1.getValue() - entry2.getValue()).get().getKey();
 
     System.out.println("O médico mais solicitado foi: " + medicoMaisSolicitado);
 }
